@@ -2,8 +2,8 @@
 // Created by emanuele.vivoli on 7/15/16.
 //
 
-#ifndef ES6_07_07_16_ASSAULTTROOPER_H
-#define ES6_07_07_16_ASSAULTTROOPER_H
+#ifndef WARR_BLUERED_ASSAULTTROOPER_H
+#define WARR_BLUERED_ASSAULTTROOPER_H
 
 #include "Character.h"
 #include "Stamina.h"
@@ -12,27 +12,28 @@
 
 class AssaultTrooper : public Character{
 public:
-    virtual Physicalfeature* getPhysicalFeature(){
-        return new Stamina();
-    }
-    virtual Weapon* getWeapon(){
-        return new Assaltrifle();
-    }
-    virtual void setPhisicalFeature(Physicalfeature* aPF) override {
-        pf = aPF;
-    }
+    virtual Physicalfeature* getPhysicalFeature(){ return new Stamina(); }
+    virtual Weapon* getWeapon(){ return new Assaltrifle(); }
 
-    virtual void setWeapon(Weapon* aW){
-        w = aW;
-    }
+    virtual void setPhisicalFeature(Physicalfeature* aPF) override { pf = aPF; }
+    virtual void setWeapon(Weapon* aW){ w = aW; }
+
     virtual void Do() override {
+        std::cout<<"*** ASSAULT TROOPER ***"<<std::endl;
         doAssoult();
     }
+
+
+private:
     virtual void doAssoult() {
-        pf->setMode();
+        usePhysical();
+        writePhysical();
         w->calcPrec();
         w->doShoot();
         doRun();
+    }
+    void writePhysical(){
+        std::cout<<"Stamina dose: "<<pf->getDose()<<std::endl;
     }
     virtual void doRun() {
         pf->setDose(-2);
@@ -40,5 +41,4 @@ public:
     }
 };
 
-
-#endif //ES6_07_07_16_ASSAULTTROOPER_H
+#endif //WARR_BLUERED_ASSAULTTROOPER_H

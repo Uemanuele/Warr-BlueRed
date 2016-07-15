@@ -2,8 +2,8 @@
 // Created by emanuele.vivoli on 7/15/16.
 //
 
-#ifndef ES6_07_07_16_CHARACTER_H
-#define ES6_07_07_16_CHARACTER_H
+#ifndef WARR_BLUERED_CHARACTER_H
+#define WARR_BLUERED_CHARACTER_H
 
 #include "Weapon.h"
 #include "Physicalfeature.h"
@@ -15,12 +15,17 @@ public:
     virtual Physicalfeature* getPhysicalFeature() =0;
     virtual Weapon* getWeapon() =0;
     virtual void Do() =0;
+    virtual void usePhysical(){
+        pf->setDose(-2);
+    }
 
 protected:
     int hp;
     Physicalfeature* pf;
     Weapon *w;
+    char x;
+    int y;
 };
 
 
-#endif //ES6_07_07_16_CHARACTER_H
+#endif //WARR_BLUERED_CHARACTER_H
